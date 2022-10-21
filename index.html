@@ -26,7 +26,7 @@
         document.querySelector( '#my_wallet' ).innerHTML = '<div class="loader"></div>';
         setTimeout( connectWallet, 1000 );
       }
-      function unloadWallet(){
+      function disconnectWallet(){
         document.querySelector( 'h1' ).innerHTML = '<i class="fa fa-error"></i>Disconnected!';
         window.location.reload();
       }
@@ -43,7 +43,7 @@
             const chainID = window.ethereum.networkVersion;
             document.querySelector( 'h1' ).innerHTML = '<span class="success"><i class="fa fa-check-circle"></i>Connected!</span>';
             document.querySelector( '#my_wallet' ).innerHTML = walletAddress + getNetwork( chainID );
-    	      window.ethereum.on( 'accountsChanged', unloadWallet );
+    	      window.ethereum.on( 'accountsChanged', disconnectWallet );
     	      window.ethereum.on( 'chainChanged', ( _chainId ) => loadWallet() );
           })
           .catch((error) => {
